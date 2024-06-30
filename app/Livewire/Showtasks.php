@@ -7,6 +7,7 @@ use App\Models\Task;
 
 class Showtasks extends Component
 {
+    public $task = null;
     public $completed = false;
     public $deleted = false;
 
@@ -66,6 +67,14 @@ class Showtasks extends Component
 
     public function loadTasks(){
         $this->tasks = Task::orderByRaw("FIELD(priority, 'High', 'Medium', 'Low')")->get();
+    }
+
+    public function viewTask($value){
+        $task = Task::where('id', $value)->first();
+
+        $this->task = $task;
+
+        return redirect()->to('/view?task='.$task->id);
     }
 
     public function render()

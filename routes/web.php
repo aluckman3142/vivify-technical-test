@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,4 +18,8 @@ Route::get('/', function () {
 
 Route::get('/add-new', function () {
     return view('addnew');
+});
+
+Route::get('/view', function () {
+    return view('viewtask');
 });

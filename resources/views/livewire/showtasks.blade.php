@@ -68,6 +68,7 @@
                         {{$task->status}}
                     </td>
                     <td class="px-6 py-4">
+                    <button type="button" class="focus:outline-none text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-green-600 hover:bg-green-700 focus:ring-green-800" wire:click="viewTask({{ $task->id }})">View</button>
                     @if($task->status == 'In Progress' && $deleted == false)
                     <button type="button" class="focus:outline-none text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-green-600 hover:bg-green-700 focus:ring-green-800" wire:click="markComplete({{ $task->id }})">Mark Complete</button>
                     @endif
