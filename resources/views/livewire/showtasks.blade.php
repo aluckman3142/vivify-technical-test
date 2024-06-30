@@ -57,12 +57,8 @@
                         {{$task->priority}}
                     </td>
                     <td class="px-6 py-4">
-                        @if($task->assigned_user)
-                        {{$task->assigned_user[0]['name']}}
-                        @endif
-                       
-                        
-                       
+                        {{$task->assigned_user[0]['name'] ?? '' }}  
+                        {{$task->assigned_team[0]['name'] ?? '' }}   
                     </td>
                     <td class="px-6 py-4">
                         

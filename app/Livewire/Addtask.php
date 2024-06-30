@@ -14,7 +14,7 @@ class Addtask extends Component
     public $title;
     public $priority;
     public $due_date;
-    public $description;
+    public $description = '';
     public $assigned_type = null;
     public $assigned_user;
     public $assigned_team;
@@ -27,12 +27,20 @@ class Addtask extends Component
     }
 
     public function saveTask(){
-        $task = new Task;
-        $task->title = $this->title;
-        $task->priority = $this->priority;
-        $task->due_date = $date = Carbon::parse($this->due_date)->format('Y-m-d H:i:s'); ;
-        $task->description = $this->description;
-        $task->save();
+
+        $rules = [
+            'title' => 'required|min:6',
+            'priority' => 'required',
+            'description' => 'max:1000',
+            'due_date' => 'required',
+            'assigned_type' => 'required',
+            'assigned_user' => 'required_if:assigned_type,==,User',
+            'assigned_team' => 'required_if:assigned_type,==,Team'
+        ];
+
+        $validated = $this->validate($rules);
+
+        $task = Task::create($validated);
 
         if($this->assigned_type == 'User'){
             $task->assigned_user()->attach([$this->assigned_user]);
