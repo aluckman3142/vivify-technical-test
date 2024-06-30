@@ -18,8 +18,13 @@ class Task extends Model
         'status'
     ];
         
-    protected $casts = [
-        'due_date' => 'datetime'            
+    // protected $casts = [
+    //     'due_date' => 'datetime'            
+    // ];
+
+    protected $with = [
+        'assigned_user',
+        'assigned_team'
     ];
         
     public function assigned_user(){
@@ -27,6 +32,6 @@ class Task extends Model
    }
         
     public function assigned_team(){
-        return $this->belongsToMany(Group::class, 'task_team', 'task_id', 'team_id');
+        return $this->belongsToMany(Team::class, 'task_team', 'task_id', 'team_id');
     }
 }

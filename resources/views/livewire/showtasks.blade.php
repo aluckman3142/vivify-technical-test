@@ -34,6 +34,9 @@
                         Priority
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Assigned To
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                     Due Date
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -54,14 +57,29 @@
                         {{$task->priority}}
                     </td>
                     <td class="px-6 py-4">
-                        {{$task->due_date}}
+                        @if($task->assigned_user)
+                        {{$task->assigned_user[0]['name']}}
+                        @endif
+                       
+                        
+                       
+                    </td>
+                    <td class="px-6 py-4">
+                        
+                        {{ Carbon\Carbon::parse($task->due_date)->format('d/m/Y') }}
                     </td>
                     <td class="px-6 py-4">
                         {{$task->status}}
                     </td>
                     <td class="px-6 py-4">
+                    @if($task->status == 'In Progress' && $deleted == false)
                     <button type="button" class="focus:outline-none text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-green-600 hover:bg-green-700 focus:ring-green-800" wire:click="markComplete({{ $task->id }})">Mark Complete</button>
+                    @endif
+                    @if($task->status == 'Open' && $deleted == false)
+                    <button type="button" class="focus:outline-none text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-yellow-600 hover:bg-yellow-700 focus:ring-yellow-800" wire:click="markInProgress({{ $task->id }})">Mark In Progress</button>
+                    @endif
                     @if($deleted)
+                    <button type="button" class="focus:outline-none text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-green-600 hover:bg-green-700 focus:ring-green-800" wire:click="restoreTask({{ $task->id }})">Restore</button>
                     <button type="button" class="focus:outline-none text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-red-600 hover:bg-red-700 focus:ring-red-800" wire:click="forceDeleteTask({{ $task->id }})">Permantly Delete</button>
                     @else
                     <button type="button" class="focus:outline-none text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-red-600 hover:bg-red-700 focus:ring-red-800" wire:click="deleteTask({{ $task->id }})">Delete</button>

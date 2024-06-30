@@ -37,9 +37,23 @@ class Showtasks extends Component
         $this->loadTasks();
     }
 
+    public function markInProgress($value) {
+        $task = Task::where('id', $value)->first();
+        $task->status = 'In Progress';
+        $task->save();
+        $this->loadTasks();
+    }
+
     public function deleteTask($value) {
         $task = Task::where('id', $value)->first();
         $task->delete();
+        $this->loadTasks();
+    }
+
+    public function restoreTask($value) {
+        $task = Task::withTrashed()->where('id', $value)->first();
+        $task->restore();
+        $this->deleted = false;
         $this->loadTasks();
     }
 
