@@ -19,7 +19,11 @@
   <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-blue-800 rounded-full peer bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all border-gray-600 peer-checked:bg-blue-600"></div>
   <span class="ms-3 text-sm font-medium text-white">View Deleted</span> 
 </label> </div>
-
+<div class="pt-2 font-bold">
+    <a href="/add-new">
+   <button type="button" class="text-lg focus:outline-none text-white focus:ring-4 font-medium rounded-lg text-sm px-2  me-2 mb-2 bg-green-600 hover:bg-green-700 focus:ring-green-800">+ Add New </button>
+</a>
+</div>
 </div>
    
     </div>

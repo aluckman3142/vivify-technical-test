@@ -53,7 +53,7 @@ class Showtasks extends Component
 
 
     public function loadTasks(){
-        $this->tasks = Task::all();
+        $this->tasks = Task::orderByRaw("FIELD(priority, 'High', 'Medium', 'Low')")->get();
     }
 
     public function render()
