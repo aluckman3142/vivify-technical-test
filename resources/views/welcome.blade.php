@@ -8,7 +8,7 @@
         <title>Laravel</title>
     </head>
     <body>
-        <h1 class="text-3xl text-red-500 font-bold underline">Adams Task Manager</h1>
+        <h1 class="text-3xl text-red-500 font-bold underline p-4">Adam's Task Manager</h1>
         <livewire:showtasks>
     @livewireScripts   
     </body>
