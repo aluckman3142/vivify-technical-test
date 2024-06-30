@@ -30,7 +30,6 @@ class Showtasks extends Component
         }
     }
 
-
     public function markComplete($value) {
         $task = Task::where('id', $value)->first();
         $task->status = 'Completed';
@@ -50,7 +49,6 @@ class Showtasks extends Component
         $this->deleted = false;
         $this->loadTasks();
     }
-
 
     public function loadTasks(){
         $this->tasks = Task::orderByRaw("FIELD(priority, 'High', 'Medium', 'Low')")->get();
