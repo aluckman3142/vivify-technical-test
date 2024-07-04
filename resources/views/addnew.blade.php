@@ -9,7 +9,7 @@
     </head>
     <body>
         <h1 class="text-3xl text-red-500 font-bold underline p-4">Adam's Task Manager</h1>
-        <livewire:addtask>
+        <livewire:viewtask :edit=true :add=true>
     @livewireScripts   
     </body>
 </html>
