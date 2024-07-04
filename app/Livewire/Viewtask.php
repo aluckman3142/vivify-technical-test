@@ -30,9 +30,9 @@ class Viewtask extends Component
         $this->taskData = Task::where('id', $this->task)->get()->first();
         $this->title = $this->taskData->title;
         $this->priority = $this->taskData->priority;
-        $this->due_date = Carbon::createFromFormat('Y-m-d H:i:s', $this->taskData->due_date)->format('d/m/Y');
+        $this->due_date = Carbon::createFromFormat('Y-m-d H:i:s', $this->taskData->due_date)->format('Y-d-m');
      // $this->due_date = '05/05/2024';  
-      $this->description = $this->taskData->description;
+        $this->description = $this->taskData->description;
         if ($this->taskData->assigned_user != '[]') {
             $this->assigned_type = 'User';
             $this->assigned_user = $this->taskData->assigned_user[0]['id'];
