@@ -88,6 +88,9 @@
         @if($edit == 'true')
         <button type="submit" class="mt-4  focus:outline-none text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-green-600 hover:bg-green-700 focus:ring-green-800">Save Task</button>
         @endif
+        <a href="/">
+            <button type="button" class="mt-4  focus:outline-none text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-red-600 hover:bg-red-700 focus:ring-red-800">Back Home</button>
+        </a>
     </form>
     @if($add == false)
     <div class="w-full bg-orange-500">
