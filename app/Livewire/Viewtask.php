@@ -26,6 +26,16 @@ class Viewtask extends Component
     public $users;
     public $teams;
 
+    protected $rules = [
+        'title' => 'required|min:6',
+        'priority' => 'required',
+        'description' => 'min:10|max:1000',
+        'due_date' => 'required',
+        'assigned_type' => 'required',
+        'assigned_user' => 'required_if:assigned_type,==,User',
+        'assigned_team' => 'required_if:assigned_type,==,Team'
+    ];
+
     public function mount() {
         $this->taskData = Task::where('id', $this->task)->get()->first();
            if ($this->add == false){
@@ -64,17 +74,7 @@ class Viewtask extends Component
 
     public function saveTask(){
 
-        $rules = [
-            'title' => 'required|min:6',
-            'priority' => 'required',
-            'description' => 'max:1000',
-            'due_date' => 'required',
-            'assigned_type' => 'required',
-            'assigned_user' => 'required_if:assigned_type,==,User',
-            'assigned_team' => 'required_if:assigned_type,==,Team'
-        ];
-
-        $validated = $this->validate($rules);
+        $validated = $this->validate();
 
         if ($add = true) {
             $task = Task::create($validated);
@@ -103,6 +103,10 @@ class Viewtask extends Component
 
         return redirect()->to('/');
     }
+
+    public function updated($propertyName) {
+        $this->validateOnly($propertyName);
+    } 
 
     public function render()
     {

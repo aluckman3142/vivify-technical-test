@@ -4,7 +4,7 @@
             <div>
                 <label class="block mb-2 text-sm font-medium text-white">Task Title *</label>
                 @if($edit == 'true')
-                <input type="text" wire:model="title" class="border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Type a title form your task...">
+                <input type="text" wire:model.live="title" class="border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Type a title form your task...">
                 <div class="text-xs text-red-500 italic">@error('title') {{ $message }} @enderror</div>
                 @else
                 {{ $title }}
@@ -13,7 +13,7 @@
             <div>
                 <label class="block mb-2 text-sm font-medium text-white">Priority *</label>
                 @if($edit == 'true')
-                <select wire:model="priority" class="border text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500">
+                <select wire:model.live="priority" class="border text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500">
                     <option value="">Select priority</option>
                     <option value="High">High</option>
                     <option value="Medium">Medium</option>
@@ -27,7 +27,7 @@
             <div>
                 <label class="block mb-2 text-sm font-medium text-white">Due Date *</label>
                 @if($edit == 'true')
-                <input type="date" wire:model="due_date" class="border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500">
+                <input type="date" wire:model.live="due_date" class="border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500">
                 <div class="text-xs text-red-500 italic">@error('due_date') {{ $message }} @enderror</div>
                 @else
                 {{ Carbon\Carbon::parse($due_date)->format('d/m/Y') }}
@@ -48,7 +48,7 @@
             <div>
                 <label class="block mb-2 text-sm font-medium text-white">Assign To *</label>
                 @if($edit == 'true')
-                <select wire:model="assigned_user" class="border text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500">
+                <select wire:model.live="assigned_user" class="border text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500">
                     <option value="">Select User</option>
                     @foreach($users as $user)
                     <option value="{{$user->id}}">{{$user->name}}</option>
@@ -64,7 +64,7 @@
             <div>
                 <label class="block mb-2 text-sm font-medium text-white">Assign To *</label>
                 @if($edit == 'true')
-                <select wire:model="assigned_team" class="border text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500">
+                <select wire:model.live="assigned_team" class="border text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500">
                     <option selected="">Select Team</option>
                     @foreach($teams as $team)
                     <option value="{{$team->id}}">{{$team->name}}</option>
@@ -79,7 +79,8 @@
             <div class="sm:col-span-2">
                 <label class="block mb-2 text-sm font-medium text-white">Description</label>
                 @if($edit == 'true')
-                <textarea wire:model="description" rows="8" class="block p-2.5 w-full text-sm rounded-lg border focus:ring-primary-500 focus:border-primary-500 bg-gray-700  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Your description here"></textarea>
+                <textarea wire:model.live="description" rows="8" class="block p-2.5 w-full text-sm rounded-lg border focus:ring-primary-500 focus:border-primary-500 bg-gray-700  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Your description here"></textarea>
+                <div class="text-xs text-red-500 italic">@error('description') {{ $message }} @enderror</div>
                 @else
                 {{ $description}}
                 @endif
